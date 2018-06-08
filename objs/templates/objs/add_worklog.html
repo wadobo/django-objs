@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n bars %}
+
+{% block content %}
+<h1>{% trans "Add a worklog" %}</h1>
+<div class="clear"></div>
+
+<div class="sample">
+<a id="hide" style="display: none" href="#" onClick="$('.samplecontent').fadeOut(); $('#hide').hide(); $('#show').show()">{% trans "Hide" %}</a>
+<a id="show" href="#" onClick="$('.samplecontent').fadeIn(); $('#show').hide(); $('#hide').show()">{% trans "Show example" %}</a>
+<pre class="samplecontent" style="display: none">
+
+== 24/01/2012 ==
+
+10:05 start productos
+
+comments not starting with a time will be discarded
+Note that the format is "HH:MM start PROJECT NAME([, tag])*" or "HH:MM stop"
+Note also that the date ("== 24/01/2012 ==" in the example) is not needed.
+If not set, it will take current day.
+
+10:33 start iteration
+
+11:06 start productos
+
+11:46 start kshow, bugs
+
+11:51 start productos
+
+12:35 start burocracia, sello
+
+13:18 start productos
+
+13:25 start negociación, vpod
+
+13:54 start burocracia, scanner
+
+escanear contrato de oficina para que dani se lo pase al gestor
+
+14:22 start productos
+
+14:28 start kshow, bug in lateral module list, "Unknown"
+
+14:37 stop
+
+A stop must be added at the end, or else the last dedication will not be added
+
+</pre>
+</div>
+
+{% if error %}
+<div class="error"> {{ error }} </div>
+{% endif %}
+
+<form method="POST" action="">
+{% csrf_token %}
+<textarea name="input">
+{{ data }}
+</textarea>
+<input type="submit" value="{% trans "Send" %}"/>
+</form>
+
+{% endblock %}
+

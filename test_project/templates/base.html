@@ -1,0 +1,31 @@
+{% load i18n staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="No es Magia es Wadobo SLL">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" type="text/css"  media="screen" />
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-responsive.css" %}" type="text/css"  media="screen" />
+
+    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <title>Objs Test project</title>
+
+    {% block extrahead %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="body-container container">
+        <div class="body-content">
+            <div>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

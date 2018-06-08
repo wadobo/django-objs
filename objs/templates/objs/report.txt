@@ -1,0 +1,16 @@
+<pre>
+{{ header }}
+----
+{% for d in dedications %}
+    * {{ d.time }}
+      user: {{ d.user }}
+      time: {{ d.dedicated|floatformat:"2" }} H
+      proj: {{ d.pr.name }}
+      tags: {{ d.tags }}
+      {% if d.commentary %}comm:
+        {% for line in d.commentlines %}#{{ line }}
+        {% endfor %} {% endif %}
+{% endfor %}
+
+TOTAL: {{ total|floatformat:"2" }} H
+</pre>

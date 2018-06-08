@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n bars %}
+
+{% block content %}
+<h1>{% trans "Overtime calculation" %}</h1>
+<div class="clear"></div>
+
+{% if error %}
+<div class="error"> {{ error }} </div>
+{% endif %}
+
+<form method="POST" action="">
+{% csrf_token %}
+<select name="date">
+    {% for d in its %}
+        <option value="{{ d }}" {% if def == d %}selected="selected"{% endif %}>{{ d }}</option>
+    {% endfor %}
+</select>
+<input class="btn" type="submit" value="{% trans "Send" %}"/>
+</form>
+
+<table class="table table-striped table-bordered">
+{% if all_ot %}
+    <tr>
+        <th>user</th>
+        <th>H</th>
+    </tr>
+    {% for user, ot in all_ot.items %}
+    <tr class="{% cycle 'odd' 'even' %}">
+        <td>{{ user }}</td>
+        {% if ot < 0 %}
+        <td style="color: red; font-weight: bold">{{ ot }}</td>
+        {% else %}
+        <td style="color: green; font-weight: bold">{{ ot }}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+{% endif %}
+</table>
+
+{% endblock %}
+

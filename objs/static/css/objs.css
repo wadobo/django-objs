@@ -1,0 +1,13 @@
+TEXTAREA#worklogarea {
+    width: 100%;
+    min-height: 180px;
+}
+
+body {
+    background-color: #000;
+}
+
+.body-content {
+    background-color: #eeeeec;
+    padding: 40px;
+}

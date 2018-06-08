@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n bars %}
+
+{% block content %}
+<h1>{{ name }} - ({{ total }})</h1>
+<div class="clear"></div>
+
+<a href="{% url "objs" %}">{% trans "back" %}</a>
+
+<div class="objs">
+<h3>{% trans "Dedication" %}</h3>
+<table>
+{% for d in objs %}
+    {% ifchanged d.time.day %}
+    <tr class="{% cycle "odd" "even" as color %}">
+    {% else %}
+    <tr class="{{ color }}">
+    {% endifchanged %}
+        <td>{{ d.time|date:"l d/m/Y H:i" }}</td>
+        <td><a href="{% url "admin:objs_projectdedication_change" d.id %}">{{ d.pr.name }}</a></td>
+        <td>{{ d.dedicated }}</td>
+        <td>{{ d.tags }}</td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}
+
